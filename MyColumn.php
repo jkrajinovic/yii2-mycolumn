@@ -26,7 +26,7 @@ class MyColumn extends DataColumn
     public function init()
     {
         $this->modelUrl = $this->modelUrl();
-        $this->content = [$this, 'CrmColumnMenu'];
+        $this->content = [$this, 'MyColumnMenu'];
     }
 
     public function defaults($key = false)
