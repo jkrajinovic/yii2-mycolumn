@@ -1,6 +1,4 @@
 <?php
-<?
-php
 /**
  * Yii2-MyColumn
  * Custom column class for displaying action link with bootstrap dropdown-menu
