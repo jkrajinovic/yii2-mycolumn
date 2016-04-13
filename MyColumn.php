@@ -1,4 +1,6 @@
 <?php
+<?
+php
 /**
  * Yii2-MyColumn
  * Custom column class for displaying action link with bootstrap dropdown-menu
@@ -16,8 +18,8 @@ class MyColumn extends DataColumn
 {
 
     private $modelUrl = '';
-	
-	private $columnHeader = 'Actions';
+
+    private $columnHeader = 'Actions';
 
     public $id = 0;
 
@@ -73,9 +75,9 @@ class MyColumn extends DataColumn
     public function beforeContent()
     {
         return '<div class="dropdown">' .
-					'<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">' .
-						'<span class="caret"></span></button>' .
-						'<ul class="dropdown-menu">';
+        '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">' .
+        '<span class="caret"></span></button>' .
+        '<ul class="dropdown-menu">';
     }
 
     public function afterContent()
@@ -87,8 +89,9 @@ class MyColumn extends DataColumn
     {
         return explode('/', trim(Url::current(), '/'))[0];
     }
-	
-	public function renderHeaderCellContent(){
+
+    public function renderHeaderCellContent()
+    {
         return $this->columnHeader;
     }
 
