@@ -72,7 +72,7 @@ class MyColumn extends DataColumn
 
     public function beforeContent()
     {
-        return '<div class="dropdown">' .
+        return '<div class="dropdown pull-right">' .
         '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">' .
         '<span class="caret"></span></button>' .
         '<ul class="dropdown-menu">';
