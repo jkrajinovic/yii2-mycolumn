@@ -15,7 +15,7 @@ use yii\helpers\Url;
 class MyColumn extends DataColumn
 {
 
-    private $modelUrl = '';
+    private $baseUrl = '';
 
     private $columnHeader = 'Actions';
 
@@ -25,16 +25,16 @@ class MyColumn extends DataColumn
 
     public function init()
     {
-        $this->modelUrl = $this->modelUrl();
+        $this->baseUrl = $this->saveBaseUrl();
         $this->content = [$this, 'MyColumnMenu'];
     }
 
     public function defaults($key = false)
     {
         $defaults = [
-            'view' => ['label' => 'View', 'iconClass' => 'icon-eye position-left', 'url' => '/' . $this->modelUrl . '/view'],
-            'update' => ['label' => 'Update', 'iconClass' => 'icon-pencil4 position-left', 'url' => '/' . $this->modelUrl . '/update'],
-            'delete' => ['label' => 'Delete', 'iconClass' => 'icon-trash position-left', 'url' => '/' . $this->modelUrl . '/delete']
+            'view' => ['label' => 'View', 'iconClass' => 'icon-eye position-left', 'url' => '/' . $this->baseUrl . '/view'],
+            'update' => ['label' => 'Update', 'iconClass' => 'icon-pencil4 position-left', 'url' => '/' . $this->baseUrl . '/update'],
+            'delete' => ['label' => 'Delete', 'iconClass' => 'icon-trash position-left', 'url' => '/' . $this->baseUrl . '/delete']
         ];
 
         if ($key)
@@ -83,9 +83,9 @@ class MyColumn extends DataColumn
         return '</ul></div></div>';
     }
 
-    public function modelUrl()
+    public function saveBaseUrl()
     {
-        return explode('/', trim(Url::current(), '/'))[0];
+        return Url::base() . Yii::$app->controller->id;
     }
 
     public function renderHeaderCellContent()
