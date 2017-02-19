@@ -15,7 +15,7 @@ use yii\helpers\Url;
 class MyColumn extends DataColumn
 {
 
-    private $baseUrl = '';
+    private $controller;
 
     private $columnHeader = 'Actions';
 
@@ -25,16 +25,16 @@ class MyColumn extends DataColumn
 
     public function init()
     {
-        $this->baseUrl = $this->saveBaseUrl();
+        $this->controller = Yii::$app->controller->id;
         $this->content = [$this, 'MyColumnMenu'];
     }
 
     public function defaults($key = false)
     {
         $defaults = [
-            'view' => ['label' => 'View', 'iconClass' => 'icon-eye position-left', 'url' => '/' . $this->baseUrl . '/view'],
-            'update' => ['label' => 'Update', 'iconClass' => 'icon-pencil4 position-left', 'url' => '/' . $this->baseUrl . '/update'],
-            'delete' => ['label' => 'Delete', 'iconClass' => 'icon-trash position-left', 'url' => '/' . $this->baseUrl . '/delete']
+            'view' => ['label' => 'View', 'iconClass' => 'icon-eye position-left', 'url' => Url::toRoute([ $this->controller .  '/view'])],
+            'update' => ['label' => 'Update', 'iconClass' => 'icon-pencil4 position-left', 'url' =>  Url::toRoute([ $this->controller .  '/update'])],
+            'delete' => ['label' => 'Delete', 'iconClass' => 'icon-trash position-left', 'url' =>  Url::toRoute([ $this->controller .  '/delete'])]
         ];
 
         if ($key)
@@ -81,11 +81,6 @@ class MyColumn extends DataColumn
     public function afterContent()
     {
         return '</ul></div></div>';
-    }
-
-    public function saveBaseUrl()
-    {
-        return Url::base() . Yii::$app->controller->id;
     }
 
     public function renderHeaderCellContent()
